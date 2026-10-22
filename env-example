@@ -1,0 +1,86 @@
+# ==========================================================================
+# AI Voice Desk - example environment configuration
+#
+# Copy this file to `.env` and edit the values for your setup:
+#     cp .env.example .env
+#
+# `.env` is gitignored. Never commit real credentials.
+# Values here are only used as initial defaults. Anything you change through
+# the in-app Settings panel is stored (encrypted-at-rest via file permissions)
+# in ./data/secrets.json and ./data/settings.json and takes precedence.
+# ==========================================================================
+
+# --------------------------------------------------------------------------
+# Server
+# --------------------------------------------------------------------------
+# Port the web application listens on.
+PORT=8387
+
+# Bind address. 127.0.0.1 keeps the app private to this machine.
+# Set LAN_ACCESS=true to listen on all interfaces instead.
+HOST=127.0.0.1
+LAN_ACCESS=false
+
+# --------------------------------------------------------------------------
+# Authentication
+# --------------------------------------------------------------------------
+# Password required for remote (LAN) sessions. REQUIRED when LAN_ACCESS=true.
+# Leave empty for local-only, no-login mode.
+AUTH_PASSWORD=
+
+# Secret used to sign session cookies. Generate a long random value:
+#     node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"
+# If left empty a random secret is generated at startup (sessions do not
+# survive a restart in that case).
+SESSION_SECRET=
+
+# Session lifetime in hours.
+SESSION_HOURS=24
+
+# --------------------------------------------------------------------------
+# AI chat endpoint (OpenAI-compatible /chat/completions)
+# --------------------------------------------------------------------------
+AI_PROVIDER=OpenAI-compatible
+AI_BASE_URL=https://api.openai.com/v1
+AI_MODEL=gpt-4o-mini
+AI_API_KEY=
+AI_TIMEOUT_MS=120000
+
+# --------------------------------------------------------------------------
+# Transcription endpoint
+# Used as a server-side fallback when the browser has no speech recognition.
+# apiStyle=openai     -> OpenAI-compatible POST /audio/transcriptions
+# apiStyle=whisper.cpp -> whisper-server POST /inference (local, no API key)
+# --------------------------------------------------------------------------
+TRANSCRIPTION_BASE_URL=http://localhost:8182/
+TRANSCRIPTION_API_STYLE=whisper.cpp
+TRANSCRIPTION_MODEL=ggml-base.en.bin
+TRANSCRIPTION_API_KEY=
+TRANSCRIPTION_TIMEOUT_MS=120000
+
+# --------------------------------------------------------------------------
+# Text-to-speech
+# TTS_PROVIDER: browser | api | piper
+# --------------------------------------------------------------------------
+TTS_PROVIDER=piper
+TTS_BASE_URL=
+TTS_MODEL=tts-1
+TTS_VOICE=alloy
+TTS_API_KEY=
+TTS_TIMEOUT_MS=60000
+
+# Local Piper
+PIPER_PATH=/home/jay/Documents/Apps/ai-voice-chat/piper-venv/bin/piper
+PIPER_VOICE=/home/jay/Documents/Apps/ai-voice-chat/voices/en_GB-alba-medium.onnx
+
+# --------------------------------------------------------------------------
+# Misc
+# --------------------------------------------------------------------------
+# Directory for the SQLite database, settings and secrets.
+DATA_DIR=./data
+
+# Conversation retention in days. 0 = keep everything.
+RETENTION_DAYS=0
+
+# Verbose request logging (never logs secrets or message content).
+LOG_LEVEL=info

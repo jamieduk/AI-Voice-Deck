@@ -1,0 +1,41 @@
+Restart the AI Voice Desk service
+=================================
+
+
+http://localhost:8387/
+
+
+The app runs as a systemd *user* service: ai-voice-desk.service
+
+Restart (after code changes, e.g. provider fixes):
+    systemctl --user restart ai-voice-desk.service
+
+Equivalent helper from the project directory:
+    npm run service:restart
+
+Other useful commands:
+    systemctl --user status ai-voice-desk.service --no-pager   # check it is running
+    journalctl --user -u ai-voice-desk.service -f              # follow live logs
+    systemctl --user stop ai-voice-desk.service                # stop
+    systemctl --user start ai-voice-desk.service               # start
+
+- systemctl commands use --user (not sudo) because it is a user service.
+- If the unit is missing, run: npm run service:install
+- Manual run without systemd: npm start
+
+
+
+Whisper Notes:
+# Whisper (local speech-to-text)
+# Paths set automatically by setup.sh (reuses prep.sh install if found).
+WHISPER_PATH=/home/jay/Documents/Apps/ai-voice-chat/whisper.cpp/build/bin/whisper-cli
+WHISPER_MODEL=/home/jay/Documents/Apps/ai-voice-chat/whisper.cpp/models/ggml-base.en.bin
+# whisper-server keeps the model loaded between transcriptions.
+WHISPER_SERVER_PORT=8182
+
+# Also uses local piper server for tts!
+
+You will need to setup piper and whisper server and also set paths in .env file correctly!
+
+
+

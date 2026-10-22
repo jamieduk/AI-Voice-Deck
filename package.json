@@ -1,0 +1,30 @@
+{
+  "name": "ai-voice-desk",
+  "version": "1.0.0",
+  "description": "Self-hosted browser AI voice desk: voice input, streaming AI chat and speech output.",
+  "type": "commonjs",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node test/smoke.js",
+    "service:install": "node scripts/service.js install",
+    "service:uninstall": "node scripts/service.js uninstall",
+    "service:status": "node scripts/service.js status",
+    "service:restart": "node scripts/service.js restart",
+    "service:logs": "node scripts/service.js logs"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "socket.io-client": "^4.7.5"
+  },
+  "license": "MIT",
+  "private": true
+}
