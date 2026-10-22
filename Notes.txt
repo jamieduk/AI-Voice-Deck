@@ -25,6 +25,13 @@ Other useful commands:
 
 
 
+# To Start on boot
+systemctl --user enable --now ai-voice-desk.service
+
+# To stop it starting at boot (disable)
+systemctl --user disable --now ai-voice-desk.service
+
+
 Whisper Notes:
 # Whisper (local speech-to-text)
 # Paths set automatically by setup.sh (reuses prep.sh install if found).
