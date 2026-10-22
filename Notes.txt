@@ -1,9 +1,9 @@
 Restart the AI Voice Desk service
 =================================
+https://github.com/jamieduk/AI-Voice-Deck
 
-
-http://localhost:8387/
-
+Accessable via http://localhost:8387/
+# Set up a free secure cloudflare tunnel to get mic access in modern browsers!
 
 The app runs as a systemd *user* service: ai-voice-desk.service
 
